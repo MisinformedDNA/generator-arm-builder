@@ -1,0 +1,29 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+  },
+  "variables": {
+    "serviceName": "[concat(replace(replace(replace(toLower(resourceGroup().name), '-', ''), '_', ''), '.', ''), uniqueString(resourceGroup().id))]",
+    "webAppName": "[concat(variables('serviceName'), '-web')]",
+    "applicationInsightsName": "[concat(variables('webAppName'), '-ai')]"
+  },
+  "resources": [
+    {
+      "apiVersion": "2014-04-01",
+      "name": "[variables('webAppName')]",
+      "type": "Microsoft.Insights/components",
+      "location": "East US",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites/', variables('webAppName'))]"
+      ],
+      "tags": {
+        "[concat('hidden-link:', resourceGroup().id, '/providers/Microsoft.Web/sites/', variables('webAppName'))]": "Resource",
+        "displayName": "AppInsightsComponent"
+      },
+      "properties": {
+        "applicationId": "[variables('webAppName')]"
+      }
+    }
+  ]
+}
