@@ -1,5 +1,5 @@
 # generator-arm-builder [![NPM version][npm-image]][npm-url]
-> Azure Resource Manager template builder
+> Azure Resource Manager template builder. Select Azure components and get Azure deployment files. No dependencies needed to get started.
 
 ## Installation
 
