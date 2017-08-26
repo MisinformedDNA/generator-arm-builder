@@ -67,14 +67,13 @@ module.exports = class extends Generator {
     );
 
     this.props.resources.forEach(function (element) {
-      //      var containsDependency = String(element).split("_")
       var templatePath = this.templatePath(element + ".json");
 
       // Merge document objects
       var contents = this.fs.readJSON(this.templatePath(element + ".json"));
       this.fs.extendJSON(destinationPath, contents);
 
-      resources.push(contents["resources"]);
+      resources = resources.concat(contents["resources"]);
 
       contents = this.fs.readJSON(this.templatePath(element + ".parameters.json"));
       this.fs.extendJSON(destinationParametersPath, contents);
