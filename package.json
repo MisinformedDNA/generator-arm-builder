@@ -1,6 +1,6 @@
 {
   "name": "generator-arm-builder",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Get started with building Azure Resource Manager templates",
   "homepage": "",
   "author": {
